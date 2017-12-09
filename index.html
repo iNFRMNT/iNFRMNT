@@ -34,10 +34,16 @@
 
   <div class="row">
     <div class="col-md-12">
-      <button class="btn" name="state" id="IN">Indiana</button>
-      <button class="btn" name="state" id="ME">Maine</button>
-      <button class="btn" name="state" id="OH">Ohio</button>
-      <button class="btn" name="state" id="RI">Rhode Island</button>
+      <div class="btn-group" data-toggle="buttons">
+        <button class="btn btn-sm" name="state" id="AK">Alaska</button>
+        <button class="btn btn-sm" name="state" id="AZ">Arizona</button>
+        <button class="btn btn-sm" name="state" id="IN">Indiana</button>
+        <button class="btn btn-sm" name="state" id="ME">Maine</button>
+        <button class="btn btn-sm" name="state" id="NY">New York</button>
+        <button class="btn btn-sm" name="state" id="OH">Ohio</button>
+        <button class="btn btn-sm" name="state" id="RI">Rhode Island</button>
+        <button class="btn btn-sm" name="state" id="WY">Wyoming</button>
+      </div>
     </div>
   </div>
 
@@ -62,10 +68,12 @@
       <button class="btn btn-default" name="subject" id="insurance">Insurance</button>
       <button class="btn btn-default" name="subject" id="internet">Internet</button>
       <button class="btn btn-default" name="subject" id="meat">Meat</button>
+      <button class="btn btn-default" name="subject" id="medicaid">Medicaid</button>
       <button class="btn btn-default" name="subject" id="medicare">Medicare</button>
       <button class="btn btn-default" name="subject" id="music">Music</button>
       <button class="btn btn-default" name="subject" id="parks">Parks</button>
       <button class="btn btn-default" name="subject" id="police">Police</button>
+      <button class="btn btn-default" name="subject" id="retirement">Retirement</button>
       <button class="btn btn-default" name="subject" id="russia">Russia</button>
       <button class="btn btn-default" name="subject" id="science">Science</button>
       <button class="btn btn-default" name="subject" id="technology">Technology</button>
@@ -83,7 +91,7 @@
       <div class="panel panel-info">
         <div class="panel-heading"><b> Bills about <span id="the_subject"></span> </b></div>
         <div class="panel-body" id="subjects"></div>
-        <div class="panel-footer">Powered by <a href="https://www.propublica.org/datastore/apis"></a>ProPublica</div>
+        <div class="panel-footer">Powered by <a href="https://www.propublica.org/datastore/apis">ProPublica</a></div>
       </div>
     </div>
 
@@ -91,23 +99,27 @@
 
   <div class="row">
     <div class="col-md-12">
-      <button class="btn btn-basic" name="news" id="abc-news">ABC News</button>
-      <button class="btn btn-info" name="news" id="axios">Axios</button>
-      <button class="btn btn-warning" name="news" id="breitbart-news">Breitbart</button>
-      <button class="btn btn-danger" name="news" id="cnn">CNN</button>
-      <button class="btn btn-primary" name="news" id="daily-mail">Daily Mail</button>
-      <button class="btn btn-basic" name="news" id="financial-times">Financial Times</button>
-      <button class="btn btn-default" name="news" id="fortune">Fortune</button>
-      <button class="btn btn-primary" name="news" id="fox-news">Fox News</button>
-      <button class="btn btn-success" name="news" id="the-huffington-post">Huffington Post</button>
-      <button class="btn btn-basic" name="news" id="new-york-magazine">NY Magazine</button>
-      <button class="btn btn-default" name="news" id="the-new-york-times">NY Times</button>
-      <button class="btn btn-danger" name="news" id="politico">Politico</button>
+      <div class="btn-group" data-toggle="buttons">
+        <button class="btn btn-basic" name="news" id="abc-news">ABC News</button>
+        <button class="btn btn-info" name="news" id="axios">Axios</button>
+        <button class="btn btn-warning" name="news" id="breitbart-news">Breitbart</button>
+        <button class="btn btn-danger" name="news" id="cnn">CNN</button>
+        <button class="btn btn-primary" name="news" id="daily-mail">Daily Mail</button>
+        <button class="btn btn-basic" name="news" id="financial-times">Financial Times</button>
+        <button class="btn btn-default" name="news" id="fortune">Fortune</button>
+        <button class="btn btn-primary" name="news" id="fox-news">Fox News</button>
+        <button class="btn btn-success" name="news" id="the-huffington-post">Huffington Post</button>
+        <button class="btn btn-basic" name="news" id="new-york-magazine">NY Magazine</button>
+        <button class="btn btn-default" name="news" id="the-new-york-times">NY Times</button>
+        <button class="btn btn-danger" name="news" id="politico">Politico</button>
+        <button class="btn btn-primary" name="news" id="the-hill">The Hill</button>
+      </div>
     </div>
   </div>
 
-  <div class="row">
-    
+  <div class="space"></div>
+
+  <div class="row"> 
     <div class='col-md-12'>
       <div class="panel panel-info">
         <div class="panel-heading"><b>News</b></div>
@@ -115,7 +127,6 @@
         <div class="panel-footer">Powered by <a href="http://newsapi.com">News API</a></div>
       </div>
     </div>
-
   </div>
 
 </div>
