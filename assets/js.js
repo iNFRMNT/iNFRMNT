@@ -87,7 +87,7 @@ $(document).ready(function(){
 
       for (var i = 0; i < data.results.length; i++) {
         $('#subjects').append(
-        data.results[i].bill_id.toUpperCase() + ": " + data.results[i].title + " " + "<a target='_blank' class='btn btn-success' href='" + data.results[i].congressdotgov_url + "'>Read the Bill</a><div class='space'></div>");
+        data.results[i].bill_id.toUpperCase() + ": " + data.results[i].title + " Sponsor: " + data.results[i].sponsor_name + " (" + data.results[i].sponsor_party + ") <a target='_blank' class='btn btn-success' href='" + data.results[i].congressdotgov_url + "'>Read the Bill</a><div class='space'></div>");
       }
     });
   });
