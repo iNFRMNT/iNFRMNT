@@ -44,7 +44,7 @@ $(document).ready(function(){
 
       for (var i = 0; i < data.results.length; i++) {
         $('#senators').append(
-        "<p>" + data.results[i].name + ": " + data.results[i].party + " " + "<a target='_blank' href='http://twitter.com/" + data.results[i].twitter_id + "'><img src='assets/twitter.png' class='twitter'></a></p>");
+        "<p>" + data.results[i].name + ": " + data.results[i].party + " " + "<a target='_blank' href='http://twitter.com/" + data.results[i].twitter_id + "'><img src='assets/twitter.png' class='social_media'></a><a target='_blank' href='http://youtube.com/" + data.results[i].youtube_id + "'><img src='assets/youtube.png' class='social_media'></a></p>");
       }
     });
   });
@@ -63,7 +63,7 @@ $(document).ready(function(){
 
       for (var i = 0; i < data.results.length; i++) {
         $('#house').append(
-        "<p>" + data.results[i].name + ": " + data.results[i].party + " " + "<a target='_blank' href='http://twitter.com/" + data.results[i].twitter_id + "'><img src='assets/twitter.png' class='twitter'></a></p>");
+        "<p>" + data.results[i].name + ": " + data.results[i].party + " " + "<a target='_blank' href='http://twitter.com/" + data.results[i].twitter_id + "'><img src='assets/twitter.png' class='social_media'></a><a target='_blank' href='http://youtube.com/" + data.results[i].youtube_id + "'><img src='assets/youtube.png' class='social_media'></a></p>");
       }
     });
   });
@@ -87,7 +87,7 @@ $(document).ready(function(){
 
       for (var i = 0; i < data.results.length; i++) {
         $('#subjects').append(
-        data.results[i].bill_id + ": " + data.results[i].title + " " + "<a target='_blank' class='btn btn-success' href='" + data.results[i].congressdotgov_url + "'>Read the Bill</a><div class='space'></div>");
+        data.results[i].bill_id.toUpperCase() + ": " + data.results[i].title + " " + "<a target='_blank' class='btn btn-success' href='" + data.results[i].congressdotgov_url + "'>Read the Bill</a><div class='space'></div>");
       }
     });
   });
