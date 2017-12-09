@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="assets/style.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script type="text/javascript" src="assets/js.js"></script>
+</head>
+<body>
+
+<div class="container">
+
+  <div class='row'>
+
+    <div class="col-md-6">
+      <div class="panel panel-info">
+        <div class="panel-heading"><b> House Members from <div class="state"></div> </b></div>
+        <div class="panel-body" id="house"></div>
+        <div class="panel-footer"></div>
+      </div>
+    </div>
+
+    <div class="col-md-6">
+      <div class="panel panel-info">
+        <div class="panel-heading"><b> Senators from <div class="state"></div> </b></div>
+        <div class="panel-body" id="senators"></div>
+        <div class="panel-footer"></div>
+      </div>
+
+    </div>
+
+  </div>
+
+  <div class="row">
+    <div class="col-md-6">
+      <button class="btn" name="state" id="IN">Indiana</button>
+      <button class="btn" name="state" id="ME">Maine</button>
+      <button class="btn" name="state" id="OH">Ohio</button>
+      <button class="btn" name="state" id="RI">Rhode Island</button>
+    </div>
+
+    <div class="col-md-6">
+      <button class="btn btn-default" name="subject" id="meat">Meat</button>
+      <button class="btn btn-default" name="subject" id="science">Science</button>
+      <button class="btn btn-default" name="subject" id="education">Education</button>
+      <button class="btn btn-default" name="subject" id="art">Art</button>
+      <button class="btn btn-default" name="subject" id="agriculture">Farming</button>
+      <button class="btn btn-default" name="subject" id="health">Health</button>
+    </div>
+  </div>
+
+  <div class='row'>
+
+    <div class="col-md-12">
+      <div class="panel panel-info">
+        <div class="panel-heading"><b> Bills about <span id="the_subject"></span> </b></div>
+        <div class="panel-body" id="subjects"></div>
+        <div class="panel-footer"></div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="row">
+    
+    <div class='col-md-6'>
+      <div class="panel panel-info">
+        <div class="panel-heading"><b>Breitbart News</b></div>
+        <div class="panel-body" id="news-stories"></div>
+        <div class="panel-footer">Powered by <a href="newsapi.com">News API</a></div>
+      </div>
+    </div>
+
+    <div class='col-md-6'>
+      <div class="panel panel-info">
+        <div class="panel-heading"><b>ABC News</b></div>
+        <div class="panel-body" id="news"></div>
+        <div class="panel-footer">Powered by <a href="newsapi.com">News API</a></div>
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+
+</body>
+</html>

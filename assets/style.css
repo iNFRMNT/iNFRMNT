@@ -1,0 +1,11 @@
+.twitter {
+	height: 30px;
+	width: 30px;
+}
+
+.space {
+	height: 1px;
+	background-color: #D3D3D3;
+	margin-top: 4px;
+	margin-bottom: 4px;
+}
