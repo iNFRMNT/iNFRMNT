@@ -15,7 +15,7 @@
 
     <div class="col-md-6">
       <div class="panel panel-info">
-        <div class="panel-heading"><b> House Members from <div class="state"></div> </b></div>
+        <div class="panel-heading"><b> House Members from <span class="state"></span> </b></div>
         <div class="panel-body" id="house"></div>
         <div class="panel-footer"></div>
       </div>
@@ -23,7 +23,7 @@
 
     <div class="col-md-6">
       <div class="panel panel-info">
-        <div class="panel-heading"><b> Senators from <div class="state"></div> </b></div>
+        <div class="panel-heading"><b> Senators from <span class="state"></span> </b></div>
         <div class="panel-body" id="senators"></div>
         <div class="panel-footer"></div>
       </div>
@@ -83,29 +83,37 @@
       <div class="panel panel-info">
         <div class="panel-heading"><b> Bills about <span id="the_subject"></span> </b></div>
         <div class="panel-body" id="subjects"></div>
-        <div class="panel-footer"></div>
+        <div class="panel-footer">Powered by <a href="https://www.propublica.org/datastore/apis"></a>ProPublica</div>
       </div>
     </div>
 
   </div>
 
   <div class="row">
-    
-    <div class='col-md-6'>
-      <div class="panel panel-info">
-        <div class="panel-heading"><b>Breitbart News</b></div>
-        <div class="panel-body" id="news-stories"></div>
-        <div class="panel-footer">Powered by <a href="newsapi.com">News API</a></div>
-      </div>
+    <div class="col-md-12">
+      <button class="btn btn-basic" name="news" id="abc-news">ABC News</button>
+      <button class="btn btn-info" name="news" id="axios">Axios</button>
+      <button class="btn btn-warning" name="news" id="breitbart-news">Breitbart</button>
+      <button class="btn btn-danger" name="news" id="cnn">CNN</button>
+      <button class="btn btn-primary" name="news" id="daily-mail">Daily Mail</button>
+      <button class="btn btn-basic" name="news" id="financial-times">Financial Times</button>
+      <button class="btn btn-default" name="news" id="fortune">Fortune</button>
+      <button class="btn btn-primary" name="news" id="fox-news">Fox News</button>
+      <button class="btn btn-success" name="news" id="the-huffington-post">Huffington Post</button>
+      <button class="btn btn-basic" name="news" id="new-york-magazine">NY Magazine</button>
+      <button class="btn btn-default" name="news" id="the-new-york-times">NY Times</button>
+      <button class="btn btn-danger" name="news" id="politico">Politico</button>
     </div>
+  </div>
 
-    <div class='col-md-6'>
+  <div class="row">
+    
+    <div class='col-md-12'>
       <div class="panel panel-info">
-        <div class="panel-heading"><b>ABC News</b></div>
-        <div class="panel-body" id="news"></div>
-        <div class="panel-footer">Powered by <a href="newsapi.com">News API</a></div>
+        <div class="panel-heading"><b>News</b></div>
+        <div class="panel-body" id="news-stories"></div>
+        <div class="panel-footer">Powered by <a href="http://newsapi.com">News API</a></div>
       </div>
-
     </div>
 
   </div>
