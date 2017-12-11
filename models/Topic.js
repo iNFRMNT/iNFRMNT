@@ -7,6 +7,10 @@ const Schema = mongoose.Schema;
 
 const topicsSchema = new Schema ({
   topic: {
-    title
+    type: String,
+    required: true
   }
 })
+
+const Topic = mongoose.model("Topic", topicSchema);
+module.exports = Topic;

@@ -25,6 +25,7 @@ const billSchema = new Schema({
   },
   date: {
     type: Date,
+    default: Date.now
   },
   partySponsor: {
     type: String,
@@ -41,15 +42,5 @@ const Bill = mongoose.model("Bill", billSchema);
 module.exports = Bill;
 
 
-
-
-
-
-
-const topicsSchema = new Schema ({
-  topic: {
-    title
-  }
-})
 
 
