@@ -18,6 +18,27 @@ $(document).ready(function(){
     });
   });
 
+  $('[name="recent-active"]').click(function() {
+
+    $('#the_subject').empty();
+
+    $.ajax({
+      url: "https://api.propublica.org/congress/v1/115/both/bills/active.json",
+      type: "GET",
+      dataType: 'json',
+      headers: {'X-API-Key': 's8AjyH0RbbFg55MB7zNhpaBG7oSrnG2zoj9Rijcb'}
+    }).done(function(data) {
+
+      console.log(data);
+
+      $("#subjects").empty();
+
+      for (var i = 0; i < data.results[0].bills.length; i++) {
+        $('#subjects').append(
+        "<div class='row'><div class='col-md-10'>" + data.results[0].bills[i].bill_id.toUpperCase() + ": " + data.results[0].bills[i].title + " Sponsor: " + data.results[0].bills[i].sponsor_name + " (" + data.results[0].bills[i].sponsor_party + ") </div><div class='col-md-2'><a target='_blank' class='btn btn-success' href='" + data.results[0].bills[i].congressdotgov_url + "'>Read the Bill</a></div></div><div class='space'></div>");
+      }
+    });
+  });
 // Searching for bills by subject
   $("#submit").on("click", function(e) {
 
