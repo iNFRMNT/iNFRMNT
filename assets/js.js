@@ -1,5 +1,6 @@
 $(document).ready(function(){
 
+// Search for news by news outlet buttons
   $('[name="news"]').click(function(){
     $.ajax({
       url: "https://newsapi.org/v2/everything?sources=" + this.id + "&apiKey=35477fbe6cda44b0853c42734970825a",
@@ -17,7 +18,43 @@ $(document).ready(function(){
     });
   });
 
+// Searching for bills by subject
+  $("#submit").on("click", function(e) {
 
+    e.preventDefault();
+
+    var x = document.getElementById("search");
+
+    console.log(x.value);
+
+    $('#the_subject').empty();
+
+    $('#the_subject').append(x.value);
+
+    $.ajax({
+      url: "https://api.propublica.org/congress/v1/bills/subjects/" + x.value + ".json",
+      type: "GET",
+      dataType: 'json',
+      headers: {'X-API-Key': 's8AjyH0RbbFg55MB7zNhpaBG7oSrnG2zoj9Rijcb'}
+    }).done(function(data) {
+
+      console.log(data);
+
+      $("#subjects").empty();
+
+      if (data.status === "ERROR") {
+        $('#subjects').append("No bills of that subject. Try again.") 
+        }
+      else {
+        for (var i = 0; i < data.results.length; i++) {
+          $('#subjects').append(
+          "<div class='row'><div class='col-md-10'>" + data.results[i].bill_id.toUpperCase() + ": " + data.results[i].title + " Sponsor: " + data.results[i].sponsor_name + " (" + data.results[i].sponsor_party + ") </div><div class='col-md-2'><a target='_blank' class='btn btn-success' href='" + data.results[i].congressdotgov_url + "'>Read the Bill</a></div></div><div class='space'></div>");
+        }
+      }
+    });
+});
+
+// Find senators by state 
   $('[name="state"]').click(function() {
 
     $(".state").empty();
@@ -41,6 +78,7 @@ $(document).ready(function(){
     });
   });
 
+// Find house members by state
   $('[name="state"]').click(function() {
     $.ajax({
       url: "https://api.propublica.org/congress/v1/members/house/" + this.id + "/current.json",
@@ -60,6 +98,7 @@ $(document).ready(function(){
     });
   });
 
+// Find bills by subject buttons
   $('[name="subject"]').click(function() {
 
     $('#the_subject').empty();
@@ -83,5 +122,4 @@ $(document).ready(function(){
       }
     });
   });
-
 });
