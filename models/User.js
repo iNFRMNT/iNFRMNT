@@ -7,8 +7,10 @@ const Schema = mongoose.Schema;
 
 const userSchema = new Schema ({
   username: {
-    type: String, 
-    required: true
+    type: String,
+    trim: true, 
+    required: true,
+    unique: true
   },
   password: {
     type: String,
@@ -27,9 +29,17 @@ const userSchema = new Schema ({
     required: true,
     validate: [validate.postalCode, 'invalid zipcode']
   },
-  topics: {
-    type: []
-  }
+  savedBillIds: [{
+    type: Mongoose.Schema.ObjectId,
+    ref: 'Bill'
+  }],
+  commentIds: [{
+    type: Mongoose.Schema.ObjectId,
+    ref: 'Comment'
+  }],
+  savedTopics: [{
+    type: String,
+  }]
 });
 const User = mongoose.model("User", userSchema);
 module.exports = User;

@@ -8,6 +8,7 @@ const Schema = mongoose.Schema;
 const commentSchema = new Schema({
   authorId: {
     type: Schema.Types.ObjectId,
+    ref: 'User',
     required: true
   },
   timeStamp: {
@@ -22,6 +23,11 @@ const commentSchema = new Schema({
     type: Boolean,
     default: true
   },
+  billId: {
+    type: Mongoose.Schema.ObjectId,
+    ref: 'Bill',
+    required: true
+  }, 
   voteCount: {
     type: Number
   }

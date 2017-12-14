@@ -10,15 +10,15 @@ const Schema = mongoose.Schema;
 //We can use custom validators using regex or try the above library
 
 const billSchema = new Schema({
-  title: { 
-    type: String, 
-    required: true
-  },
   author: {
     type: String, 
     required: true,
     default: "Unknown author"
   },
+  title: {
+    type: String,
+    required: true,
+  }
   body: { 
     type: String, 
     required: true
@@ -30,16 +30,27 @@ const billSchema = new Schema({
   partySponsor: {
     type: String,
   },
-  commentIds: {
-    type: [],
-    required: false
-  },
+  commentIds: [{
+    type: Mongoose.Schema.ObjectId,
+    ref: 'Comments'
+  }],
   voteCount: {
     type: Number
   }
 });
+
 const Bill = mongoose.model("Bill", billSchema);
 module.exports = Bill;
+
+
+
+
+
+
+
+
+
+
 
 
 
