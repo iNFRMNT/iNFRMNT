@@ -13,6 +13,10 @@
 	background-color: #ffdab9;
 }
 
+#financial-times:hover {
+	background: #e0bea1;
+}
+
 .space {
 	height: 1px;
 	background-color: #D3D3D3;

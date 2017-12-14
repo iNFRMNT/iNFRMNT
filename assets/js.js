@@ -18,9 +18,12 @@ $(document).ready(function(){
     });
   });
 
+// Most recent button
   $('[name="recent-active"]').click(function() {
 
     $('#the_subject').empty();
+
+    $('#the_subject').append("most recent");
 
     $.ajax({
       url: "https://api.propublica.org/congress/v1/115/both/bills/active.json",
@@ -34,11 +37,21 @@ $(document).ready(function(){
       $("#subjects").empty();
 
       for (var i = 0; i < data.results[0].bills.length; i++) {
+
+        var title;
+          if (data.results[0].bills[i].short_title === null) {
+            title = data.results[0].bills[i].title
+            }
+          else {
+            title = data.results[0].bills[i].short_title
+            }
+
         $('#subjects').append(
-        "<div class='row'><div class='col-md-10'>" + data.results[0].bills[i].bill_id.toUpperCase() + ": " + data.results[0].bills[i].title + " Sponsor: " + data.results[0].bills[i].sponsor_name + " (" + data.results[0].bills[i].sponsor_party + ") </div><div class='col-md-2'><a target='_blank' class='btn btn-success' href='" + data.results[0].bills[i].congressdotgov_url + "'>Read the Bill</a></div></div><div class='space'></div>");
+        "<div class='row'><div class='col-md-10'>" + data.results[0].bills[i].bill_id.toUpperCase() + ": " + title + ", Sponsor: " + data.results[0].bills[i].sponsor_name + "; " + data.results[0].bills[i].sponsor_party + ", " + data.results[0].bills[i].sponsor_state + " </div><div class='col-md-2'><a target='_blank' class='btn btn-success' href='" + data.results[0].bills[i].congressdotgov_url + "'>Read the Bill</a></div></div><div class='space'></div>");
       }
     });
   });
+
 // Searching for bills by subject
   $("#submit").on("click", function(e) {
 
@@ -50,7 +63,7 @@ $(document).ready(function(){
 
     $('#the_subject').empty();
 
-    $('#the_subject').append(x.value);
+    $('#the_subject').append("about " + x.value);
 
     $.ajax({
       url: "https://api.propublica.org/congress/v1/bills/subjects/" + x.value + ".json",
@@ -68,8 +81,17 @@ $(document).ready(function(){
         }
       else {
         for (var i = 0; i < data.results.length; i++) {
+
+        var title;
+          if (data.results[i].short_title === null) {
+            title = data.results[i].title
+            }
+          else {
+            title = data.results[i].short_title
+            }
+
           $('#subjects').append(
-          "<div class='row'><div class='col-md-10'>" + data.results[i].bill_id.toUpperCase() + ": " + data.results[i].title + " Sponsor: " + data.results[i].sponsor_name + " (" + data.results[i].sponsor_party + ") </div><div class='col-md-2'><a target='_blank' class='btn btn-success' href='" + data.results[i].congressdotgov_url + "'>Read the Bill</a></div></div><div class='space'></div>");
+          "<div class='row'><div class='col-md-10'>" + data.results[i].bill_id.toUpperCase() + ": " + title + ", Sponsor: " + data.results[i].sponsor_name + " (" + data.results[i].sponsor_party + ") </div><div class='col-md-2'><a target='_blank' class='btn btn-success' href='" + data.results[i].congressdotgov_url + "'>Read the Bill</a></div></div><div class='space'></div>");
         }
       }
     });
@@ -94,8 +116,44 @@ $(document).ready(function(){
 
       for (var i = 0; i < data.results.length; i++) {
         $('#senators').append(
-        "<p>" + data.results[i].name + ": " + data.results[i].party + " " + "<a target='_blank' href='http://twitter.com/" + data.results[i].twitter_id + "'><img src='assets/twitter.png' class='social_media'></a> <a target='_blank' href='http://youtube.com/" + data.results[i].youtube_id + "'><img src='assets/youtube.png' class='social_media'></a> <a target='_blank' href='http://facebook.com/" + data.results[i].facebook_account + "'><img src='assets/facebook.png' class='social_media'></a></p>");
+        "<p><span name='senator' id ='" + data.results[i].id + "'>" + data.results[i].name + "</span>: " + data.results[i].party + " " + "<a target='_blank' href='http://twitter.com/" + data.results[i].twitter_id + "'><img src='assets/twitter.png' class='social_media'></a> <a target='_blank' href='http://youtube.com/" + data.results[i].youtube_id + "'><img src='assets/youtube.png' class='social_media'></a> <a target='_blank' href='http://facebook.com/" + data.results[i].facebook_account + "'><img src='assets/facebook.png' class='social_media'></a></p>");
       }
+    });
+  });
+
+// Find recent bills by specfic senator
+  $('body').on("click", '[name="senator"]', function(){
+
+    console.log(this.id);
+
+    $('#the_subject').empty();
+
+    $.ajax({
+      url: "https://api.propublica.org/congress/v1/members/" + this.id + "/bills/introduced.json",
+      type: "GET",
+      dataType: 'json',
+      headers: {'X-API-Key': 's8AjyH0RbbFg55MB7zNhpaBG7oSrnG2zoj9Rijcb'}
+    }).done(function(data) {
+
+      console.log(data);
+
+      $("#subjects").empty();
+
+      $('#the_subject').append("from " + data.results[0].bills[0].sponsor_name);
+
+      for (var i = 0; i < data.results[0].bills.length; i++) {
+        var title;
+          if (data.results[0].bills[i].short_title === null) {
+            title = data.results[0].bills[i].title
+            }
+          else {
+            title = data.results[0].bills[i].short_title
+            }
+
+        $('#subjects').append(
+        "<div class='row'><div class='col-md-10'>" + data.results[0].bills[i].bill_id.toUpperCase() + ": " + title + " </div><div class='col-md-2'><a target='_blank' class='btn btn-success' href='" + data.results[0].bills[i].congressdotgov_url + "'>Read the Bill</a></div></div><div class='space'></div>");
+      }
+
     });
   });
 
@@ -124,7 +182,7 @@ $(document).ready(function(){
 
     $('#the_subject').empty();
 
-    $('#the_subject').append(this.id);
+    $('#the_subject').append("about " + this.id);
 
     $.ajax({
       url: "https://api.propublica.org/congress/v1/bills/subjects/" + this.id + ".json",
@@ -138,8 +196,17 @@ $(document).ready(function(){
       $("#subjects").empty();
 
       for (var i = 0; i < data.results.length; i++) {
+
+        var title;
+          if (data.results[i].short_title === null) {
+            title = data.results[i].title
+            }
+          else {
+            title = data.results[i].short_title
+            }
+
         $('#subjects').append(
-        "<div class='row'><div class='col-md-10'>" + data.results[i].bill_id.toUpperCase() + ": " + data.results[i].title + " Sponsor: " + data.results[i].sponsor_name + " (" + data.results[i].sponsor_party + ") </div><div class='col-md-2'><a target='_blank' class='btn btn-success' href='" + data.results[i].congressdotgov_url + "'>Read the Bill</a></div></div><div class='space'></div>");
+        "<div class='row'><div class='col-md-10'>" + data.results[i].bill_id.toUpperCase() + ": " + title + ", Sponsor: " + data.results[i].sponsor_name + " (" + data.results[i].sponsor_party + ") </div><div class='col-md-2'><a target='_blank' class='btn btn-success' href='" + data.results[i].congressdotgov_url + "'>Read the Bill</a></div></div><div class='space'></div>");
       }
     });
   });
