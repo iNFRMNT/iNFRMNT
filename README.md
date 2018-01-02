@@ -1,2 +1,2 @@
-# iNFRMNT
-Final Project
+###Demo: Basic db interface with sequelize
+
