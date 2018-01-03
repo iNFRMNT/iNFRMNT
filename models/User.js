@@ -1,45 +1,58 @@
-const mongoose = require("mongoose");
-//$ npm install git://github.com/RGBboy/mongoose-validate.git
-const validate = require("mongoose-validate");
+'use strict'
 
-// Save a reference to the Schema constructor
-const Schema = mongoose.Schema;
+module.exports = (sequelize, DataTypes) => {
+  const User = sequelize.define('User', {
+    id: {
+      type: DataTypes.UUID,
+      primaryKey: true,
+      defaultValue: DataTypes.UUIDV4,
+      allowNull: false
+    },
+    userName: {
+      type: DataTypes.STRING,
+      trim: true, 
+      required: true,
+      unique: true
+    },
+    password: {
+      type: DataTypes.STRING,
+      trim: true,
+      required: true,
+      // minlength: 6,
+      // maxlength: 20
+    },
+    email: {
+      type: DataTypes.STRING,
+      required: true, 
+      //validate: [validate.email, 'invalid email address']
+    },
+    zipcode: {
+      type: DataTypes.STRING,
+      required: true,
+      //validate: [validate.postalCode, 'invalid zipcode']
+    },
+    //posts: [{}]
+    createdAt: DataTypes.DATE,
+    updatedAt: DataTypes.DATE,
+    deletedAt: DataTypes.DATE
+  });
+  User.associate = function(models) {
 
-const userSchema = new Schema ({
-  username: {
-    type: String,
-    trim: true, 
-    required: true,
-    unique: true
-  },
-  password: {
-    type: String,
-    trim: true,
-    required: true,
-    minlength: 6,
-    maxlength: 20
-  },
-  email: {
-    type: String,
-    required: true, 
-    validate: [validate.email, 'invalid email address']
-  },
-  zipcode: {
-    type: String,
-    required: true,
-    validate: [validate.postalCode, 'invalid zipcode']
-  },
-  savedBillIds: [{
-    type: Mongoose.Schema.ObjectId,
-    ref: 'Bill'
-  }],
-  commentIds: [{
-    type: Mongoose.Schema.ObjectId,
-    ref: 'Comment'
-  }],
-  savedTopics: [{
-    type: String,
-  }]
-});
-const User = mongoose.model("User", userSchema);
-module.exports = User;
+    User.hasMany(models.Topic, {
+      constraints: false
+      // foreignKey: 'TopicId'
+      // as: 'topics'
+    });
+
+    User.belongsToMany(models.Bill, {
+      through: 'UserBill'
+    });
+
+    User.hasMany(models.Post, {
+      constraints: false
+      //foreignKey: 'PostId'
+    });
+  };
+
+  return User;
+};

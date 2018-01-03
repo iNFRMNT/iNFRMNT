@@ -1,16 +1,17 @@
-const mongoose = require("mongoose");
-//$ npm install git://github.com/RGBboy/mongoose-validate.git
-const validate = require("mongoose-validate");
+module.exports = (sequelize, DataTypes) => {
+  const Topic = sequelize.define('Topic', {
+    id: {
+      type: DataTypes.UUID,
+      primaryKey: true,
+      defaultValue: DataTypes.UUIDV4,
+      allowNull: false
+    },
+    topic: DataTypes.STRING,
+    createdAt: DataTypes.DATE,
+    updatedAt: DataTypes.DATE,
+    deletedAt: DataTypes.DATE
+  });
+  return Topic;
+};
 
-// Save a reference to the Schema constructor
-const Schema = mongoose.Schema;
-
-const topicsSchema = new Schema ({
-  topic: {
-    type: String,
-    required: true
-  }
-})
-
-const Topic = mongoose.model("Topic", topicSchema);
-module.exports = Topic;
+    

@@ -1,46 +1,56 @@
-const mongoose = require("mongoose");
-//$ npm install git://github.com/RGBboy/mongoose-validate.git
-const validate = require("mongoose-validate");
+'use strict'
 
-// Save a reference to the Schema constructor
-const Schema = mongoose.Schema;
+module.exports = (sequelize, DataTypes) => {
+  const Bill = sequelize.define('Bill', {
+    id: {
+      type: DataTypes.UUID,
+      primaryKey: true,
+      defaultValue: DataTypes.UUIDV4,
+      allowNull: false
+    },
+    author: {
+      type: DataTypes.STRING, 
+      required: true,
+      default: "Unknown"
+    },
+    title: {
+      type: DataTypes.STRING,
+      required: true
+    },
+    body: { 
+      type: DataTypes.STRING, 
+      required: true
+    },
+    date: {
+      type: DataTypes.STRING,
+      default: Date.now
+    },
+    partySponsor: {
+      type: DataTypes.STRING
+    },
+    voteCount: {
+      type: DataTypes.INTEGER
+    },
+    createdAt: DataTypes.DATE,
+    updatedAt: DataTypes.DATE,
+    deletedAt: DataTypes.DATE
+  });
 
-//Every time someone either saves or comments on a bill, we create a new bill document in the collection
+  Bill.associate = function(models) {
 
-//We can use custom validators using regex or try the above library
+    Bill.belongsToMany(models.User, {
+      through: 'UserBill'
+    });
 
-const billSchema = new Schema({
-  author: {
-    type: String, 
-    required: true,
-    default: "Unknown author"
-  },
-  title: {
-    type: String,
-    required: true,
-  }
-  body: { 
-    type: String, 
-    required: true
-  },
-  date: {
-    type: Date,
-    default: Date.now
-  },
-  partySponsor: {
-    type: String,
-  },
-  commentIds: [{
-    type: Mongoose.Schema.ObjectId,
-    ref: 'Comments'
-  }],
-  voteCount: {
-    type: Number
-  }
-});
+    Bill.hasMany(models.Post, {
+      constraints: false
+      //foreignKey: 'postId',
+      //as: 'posts'
+    });
+  };
 
-const Bill = mongoose.model("Bill", billSchema);
-module.exports = Bill;
+  return Bill;
+};
 
 
 
